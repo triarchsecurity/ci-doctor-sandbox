@@ -1,0 +1,14 @@
+name: sample-failing
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Intentional failure (ci-doctor smoke target)
+        run: |
+          echo "This workflow intentionally fails to give ci-doctor a real workflow_run.conclusion=failure event to classify during Phase 1 smoke testing."
+          echo "Triggered by: ${{ github.event_name }}"
+          exit 1
