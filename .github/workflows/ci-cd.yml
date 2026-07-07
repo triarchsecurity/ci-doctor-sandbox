@@ -1,0 +1,33 @@
+name: Sandbox CI/CD
+
+# SCRATCH thin caller — proves the release/v9-next overhaul + asymmetric_lanes COMPILE and wire
+# correctly (surfaces the invisible startup_failure the real fleet cannot). NOT a real deploy:
+# identity inputs are dummies, so the deploy job auth-fails (acceptable signal). Never merged.
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+    branches: [main, dev]
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  ci-cd:
+    uses: triarchsecurity/shared-workflows/.github/workflows/ci-cd.yml@release/v9-next
+    with:
+      app_type: next-app
+      project_key: ci-doctor-sandbox
+      firebase_project_id: triarchsecurity-sandbox
+      app_hosting_backend: sandbox
+      dev_backend: sandbox-dev
+      prod_url: https://sandbox.example.invalid
+      dev_url: https://sandbox-dev.example.invalid
+      project_name: CI Doctor Sandbox
+      asymmetric_lanes: true
+      # Folded-guard analog: a trivial vitest suite. Blanked on the DEV lane, run on the PROD lane.
+      test_command: >-
+        npx vitest run tests/smoke.test.ts
+    secrets: inherit
