@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   ci-cd:
-    uses: triarchsecurity/shared-workflows/.github/workflows/ci-cd.yml@release/v9-next
+    uses: triarchsecurity/shared-workflows/.github/workflows/ci-cd.yml@release/v9
     with:
       app_type: next-app
       project_key: ci-doctor-sandbox
