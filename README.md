@@ -12,3 +12,7 @@ It is intentionally NOT a real product repo and should never have business code 
 
 Owned by: triarchsecurity / Mike Geehan
 Related: https://github.com/triarchsecurity/triarch-managed-agents
+
+## Pipeline probe note
+
+Docs-only change to exercise the docs-only fast-path.
