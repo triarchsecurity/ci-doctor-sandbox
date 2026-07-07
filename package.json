@@ -7,6 +7,6 @@
     "start": "node -e \"console.log('sandbox start')\""
   },
   "devDependencies": {
-    "vitest": "^2.1.9"
+    "vitest": "^4.1.10"
   }
 }
